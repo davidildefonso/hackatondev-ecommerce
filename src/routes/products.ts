@@ -15,4 +15,10 @@ router.get('/:id', async (req, res) => {
 	res.json(product);
 });
 
+router.get('/search/:query', async (req, res) => {
+	const query = req.params.query;
+	const filteredProducts =  await productService.getFiltered(query);
+	res.json(filteredProducts);
+});
+
 export default router;

@@ -1,23 +1,40 @@
-import Product from "../db/models/Product";
-import { ProductEntry } from "../types";
+import { ObjectId } from 'mongodb';
+import {  getDatabase, closeConnectionDb } from '../db/mongoConnection';
 
-const getAll = async () :  Promise<ProductEntry[]> => {	
-	const products =  await Product.find({});
-	// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+const getAll = async () => {	
+	const database =  getDatabase();
+	const products =   await database.collection("products").find({}).toArray();
+	await closeConnectionDb();
 	return products;
 };
 
-const getSingle = async (id: string) : Promise<ProductEntry> => {
-	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-	const product = await Product.findById(id);
-	// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+const getSingle = async (id: string)  => {
+	const database =  getDatabase();
+	const product =   await database.collection("products").findOne({ _id: new ObjectId(id)});
+	await closeConnectionDb();
 	return product;
 };
 
+const getFiltered = async (query : string) => {
+	const database =  getDatabase();
+	const products = database.collection("products");
+	const filteredProducts = await products.aggregate([{
+		$search: {
+			index: 'default',
+			text: {
+				query,
+				path: "name"
+			}
+		}
+	}]).toArray();
+	await closeConnectionDb();
+	return filteredProducts;
+};
 
 const service = {
 	getAll, 
-	getSingle
+	getSingle,
+	getFiltered
 };
 
 export default service;

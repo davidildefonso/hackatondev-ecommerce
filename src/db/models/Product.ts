@@ -1,93 +1,71 @@
-import  mongoose from 'mongoose';
 
-const productSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  code: {
-	type: String,
-	required: true
-  },
-  brand: {
-    type: String,
-    required: true
-  },
-  price: {
-    type:  Number,
-    required: true
-  },
-  currency: {
-    type: String,
-    required: true
-  },
-  productBullets: {
-    type: [String],
-    required: true
-  },
-  productDescription: {
-    type: String,
-    required: true
-  },
-  category: {
-    type: String,
-    required: true
-  },
-  metaKeywords: {
-    type:  [String],
-    required: true
-  },
-  colors: {
-    type:  [String],
-    required: true
-  },
-  sizes: {
-    type:  [String],
-    required: true
-  },
-  weightUnit: {
-    type:  String,
-    required: true
-  },
-  productWeight: {
-    type:  [Number],
-    required: true
-  }, 
-  productLength: {
-    type:  [Number],
-    required: true
-  },
-  lengthUnit: {
-    type:  String,
-    required: true
-  },
-  ProductWidth: {
-    type:  [Number],
-    required: true
-  },
-  ProductHeight: {
-    type:  [Number],
-    required: true
-  },
-  PackageWeight: {
-    type:  [Number],
-    required: true
-  },
-  PackageLength: {
-    type:  [Number],
-    required: true
-  },
-  PackageWidth: {
-    type:  [Number],
-    required: true
-  },
-  PackageHeight: {
-    type:  [Number],
-    required: true
-  }
-});
+export default class Product  {
 
-const Product = mongoose.model('Product', productSchema);
+	name : string;
+	code: string;
+	brand: string;
+	price: number;
+	currency: string;
+	productBullets: [string];
+	productDescription: string;
+	category: string;
+	colors: [string];
+	sizes: [string];
+	weightUnit: string;
+	productWeight: number;
+	productLength:  number;
+	lengthUnit: string;
+	ProductWidth:  number;
+	ProductHeight: number;
+	PackageWeight:  number; 
+	PackageLength: number;
+	PackageWidth:  number; 
+	PackageHeight:  number;
 
-export default Product;
+	constructor(
+		name : string,
+		code: string,
+		brand: string,
+		price: number,
+		currency: string,
+		productBullets: [string],
+		productDescription: string,
+		category: string,
+		colors: [string],
+		sizes: [string],
+		weightUnit: string,
+		productWeight: number,
+		productLength:  number,
+		lengthUnit: string,
+		ProductWidth:  number,
+		ProductHeight: number,
+		PackageWeight:  number, 
+		PackageLength: number,
+		PackageWidth:  number, 
+		PackageHeight:  number
+	){
+		this.name = name;
+		this.code = code;
+		this.brand = brand;
+		this.price = price;
+		this.currency = currency;
+		this.productBullets = productBullets;
+		this.productDescription = productDescription;
+		this.category = category;
+		this.colors = colors;
+		this.sizes = sizes;
+		this.weightUnit = weightUnit;
+		this.productWeight = productWeight;
+		this.productLength = productLength;
+		this.lengthUnit = lengthUnit;
+		this.ProductWidth = ProductWidth;
+		this.ProductHeight = ProductHeight;
+		this.PackageWeight = PackageWeight;
+		this.PackageLength = PackageLength;
+		this.PackageWidth = PackageWidth;
+		this.PackageHeight = PackageHeight;
+	}
 
+
+
+}
