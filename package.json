@@ -5,7 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "start": "cross-env NODE_ENV=PRODUCTION  node  build/index.js",
-    "test": "cross-env NODE_ENV=TEST   mocha  'src/test/**/*.ts' --timeout 10000 ",
+    "test": "cross-env NODE_ENV=TEST   mocha  'src/test/**/*.ts' --timeout 0 ",
     "dev": "cross-env NODE_ENV=DEVELOPMENT   ts-node-dev index.ts",
     "seed": "ts-node src/db/seeders/exportDb.ts",
     "tsc": "tsc"
@@ -34,6 +34,7 @@
     "chai-http": "^4.3.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.2",
-    "mongoose": "^6.1.5"
+    "mongoose": "^6.1.5",
+    "mongoose-atlas-search": "^1.0.8"
   }
 }
