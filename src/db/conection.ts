@@ -1,28 +1,12 @@
 
 import config from '../config/config';
-import { MongoClient } from  "mongodb";
+import mongoose from 'mongoose';
 
 const { username, password, database } = config;
 
 const uri =
   `mongodb+srv://${username}:${password}@cluster0.r0mb0.mongodb.net/${database}?retryWrites=true&w=majority`;
 
-let _db : MongoClient;
+const connect  =  () => mongoose.connect(uri);
 
-const client = new MongoClient(uri);
-
-const connection =  async() => {
-    if(_db) {
-        return _db;
-    } else {
-		try {
-			_db = await client.connect();	
-			return _db;
-		} catch (error) {
-			return error;
-		}
-        
-    }
-};
-
-export default connection;
+export default connect;

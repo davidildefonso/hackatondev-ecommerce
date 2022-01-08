@@ -1,9 +1,8 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import { MongoClient } from 'mongodb';
 import app from '../app';
-import connection from '../db/conection';
-
+import connect from '../db/conection';
+import mongoose from 'mongoose';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const should = chai.should();
 const expect = chai.expect;
@@ -21,11 +20,9 @@ describe("on start up api", () => {
 
 describe("on startup ", () => {
 	it("it connects to mongo db ", async () => {
-		const db  = await connection();
+		const db  =  connect();
 		expect(db).to.exist;
-		if (db instanceof MongoClient) {
-			await db.close();
-		}	
+		await mongoose.connection.close();	
 	});
 });
 
