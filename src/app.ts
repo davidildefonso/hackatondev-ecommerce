@@ -7,7 +7,7 @@ import paymentRouter from './routes/payments';
 
 const app = express();
 app.use(express.json());
-
+app.use(express.static('./src/dist'));
 
 app.use('/api/ping', router);
 app.use('/api/products', productRouter);
