@@ -8,6 +8,7 @@
     "test": "cross-env NODE_ENV=TEST   mocha  'src/test/**/*.ts' --timeout 0 ",
     "dev": "cross-env NODE_ENV=DEVELOPMENT   ts-node-dev index.ts",
     "seed": "ts-node src/db/seeders/exportDb.ts",
+	"seed:initial": "cross-env NODE_ENV=DEVELOPMENT ts-node src/db/seeders/populateDatabase.ts",
     "tsc": "tsc"
   },
   "keywords": [],

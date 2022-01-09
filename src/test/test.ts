@@ -24,23 +24,15 @@ describe("on start up api", () => {
 
 describe("Products ", () => {
 	beforeEach(async () => {		
-		await connectDb();	
-		// await Product.deleteMany({});			
-
-		// for(const product of initialProducts){
-		// 	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-		// 	const productObject   = new Product(product);			
-		// 	// eslint-disable-next-line @typescript-eslint/no-unsafe-call
-		// 	await productObject.save();
-		// }			
+		await connectDb();					
 	});
 
 
 	it("all products are returned", async () => {
 		const response = await chai.request(app).get('/api/products');
 		response.should.have.status(200);
-		expect(response.body).to.have.lengthOf(2);
-		expect(response.body[0].name).eql('Reloj US Polo Asnn Casual US9281');
+		expect(response.body).to.have.lengthOf(34);
+		expect(response.body[0].name).contain('Boieesen Art - Cuadro de pintura al óleo con textura');
 	});
 
 	it("a single product can be returned", async () => {
@@ -50,16 +42,15 @@ describe("Products ", () => {
 		const response = await chai.request(app).get(`/api/products/${id}`);
 		response.should.have.status(200);
 		expect(response.body).to.exist;
-		expect(response.body.name).eql('Reloj US Polo Asnn Casual US9281');
+		expect(response.body.name).contain('Boieesen Art - Cuadro de pintura al óleo con textura');
 	});
 
-	it("search by query title returns filtered products ", async () => {
-		const query = "MishkaG";
+	it("search by query title returns filtered products by brand ", async () => {
+		const query = "Winpeak Art";
 		const response = await chai.request(app).get(`/api/products/search/${query}`);
 		response.should.have.status(200);	
-		expect(response.body).not.to.have.lengthOf(2);
-		expect(response.body).to.have.lengthOf(1);
-		expect(response.body[0].name).to.contain(query);
+		expect(response.body).not.to.have.lengthOf(34);
+		expect(response.body[0].brand).to.contain(query);
 	});
 
 	afterEach(async () => {

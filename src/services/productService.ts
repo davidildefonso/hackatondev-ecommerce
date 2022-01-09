@@ -23,7 +23,7 @@ const getFiltered = async (query : string) => {
 			index: 'default',
 			text: {
 				query,
-				path: "name"
+				path: "brand"
 			}
 		}
 	}]).toArray();
