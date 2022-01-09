@@ -1,26 +1,53 @@
-export interface ProductEntry {
-	_id: string;
-	name: string;
-	code: string;
-	brand: string;
-	price: number;
-	currency: string;
-	productBullets: Array<string>;
-	productDescription: string;
-	category: string;
-	metaKeywords: Array<string>;
-	colors:  Array<string>;
-	sizes:  Array<string>;
-	productWeight:  Array<number>;
-	productLength:  Array<number>;
-	ProductWidth:  Array<number>;
-	weightUnit: string;
-	lengthUnit: string;
-	PackageWeight:  Array<number>;
-	PackageLength:  Array<number>;
-	PackageWidth:  Array<number>;
-	PackageHeight:  Array<number>;
+import { ObjectId } from 'mongodb';
+
+
+interface CartProduct{
+	productId : string
+	quantity: number
+}
+
+export interface Order {
+	_id: ObjectId
+	products: Array <CartProduct>
+	date: Date
+	email: string
+	status: string
+	updateDate?: Date
+	amount : number
 }
 
 
+export interface Payment {
+	_id: ObjectId
+	date: Date
+	orderId: string
+	email: string
+	success: boolean
+	transactionID?: string
+	amount: number
+}
 
+
+export interface Product {
+	_id: ObjectId
+	name: string
+	code: string
+	brand: string
+	price: number
+	currency: string
+	productBullets: [string]
+	productDescription: string
+	category: string
+	colors: [string],
+	sizes: string
+	productWeight: number
+	weightUnit: string
+	productLength: number
+	lengthUnit:  string
+	ProductWidth: number
+	ProductHeight:  number
+	PackageWeight: number
+	PackageLength: number
+	PackageWidth: number
+	PackageHeight: number
+}

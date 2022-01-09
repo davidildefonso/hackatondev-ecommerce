@@ -4,6 +4,7 @@
 
 import {  getDatabase } from '../db/mongoConnection';
 
+
 export const initialProducts = [
   {
     name: 'Reloj US Polo Asnn Casual US9281',
@@ -95,4 +96,9 @@ export const productsInDb = async () => {
 };
 
 
+export const getOrders = async () => {
+	const database =  getDatabase();
+	const order  =   await database.collection("orders").find({}).toArray();	
+	return order;
+};
 
