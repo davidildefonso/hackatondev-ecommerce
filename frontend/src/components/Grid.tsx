@@ -5,7 +5,7 @@ import GridItem from "./GridItem";
 
 const Grid = () => {
 
-	const [ products, productService ] = useResource(`${process.env.BACKEND_URL}products`);
+	const [ products, productService ] = useResource(`api/products`);
 
 	useEffect(() => {		
 		// eslint-disable-next-line @typescript-eslint/no-floating-promises
