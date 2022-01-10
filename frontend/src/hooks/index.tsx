@@ -12,6 +12,7 @@ interface Service{
 }
 
 interface Resource{
+	_id: string;
 	resources: Array<any>
 	service: Service
 }

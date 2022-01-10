@@ -11,7 +11,7 @@
     "seed:initial": "cross-env NODE_ENV=DEVELOPMENT ts-node src/db/seeders/populateDatabase.ts",
 	"seed:production-initial": "cross-env NODE_ENV=PRODUCTION ts-node src/db/seeders/populateProductionDb.ts",
     "tsc": "tsc",
-	"tsc:prod": "rm -r build && tsc",
+	"tsc:prod": "rm -r build && npm run tsc",
     "build:ui": "rm -r src/dist && cd frontend/ && npm run build && cp -r dist ../src/ && cd ../",
 	"build:prod-ui": "rm -r build/src/dist && cd frontend/ && npm run build && cp -r dist ../build/src/ && cd ../"
   },
