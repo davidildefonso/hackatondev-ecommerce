@@ -12,16 +12,27 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.closeConnection = exports.connect = void 0;
+exports.getDatabase = exports.closeConnectionDb = exports.connectDb = void 0;
 const config_1 = __importDefault(require("../config/config"));
-const mongoose_1 = __importDefault(require("mongoose"));
+const mongodb_1 = require("mongodb");
 const { username, password, database } = config_1.default;
-const uri = `mongodb+srv://${username}:${password}@cluster0.r0mb0.mongodb.net/${database}?retryWrites=true&w=majority`;
-const connect = () => __awaiter(void 0, void 0, void 0, function* () {
+class DbClient {
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    constructor() { }
+    static getInstance() {
+        if (!this.instance) {
+            const uri = `mongodb+srv://${username}:${password}@cluster0.r0mb0.mongodb.net/${database}?retryWrites=true&w=majority`;
+            this.instance = new mongodb_1.MongoClient(uri);
+        }
+        return this.instance;
+    }
+}
+const connectDb = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield mongoose_1.default.connect(uri);
+        const mongoClient = DbClient.getInstance();
+        const client = yield mongoClient.connect();
         console.log('connected to MongoDB');
-        return mongoose_1.default.connection;
+        return client;
     }
     catch (error) {
         if (error instanceof Error) {
@@ -29,6 +40,15 @@ const connect = () => __awaiter(void 0, void 0, void 0, function* () {
         }
     }
 });
-exports.connect = connect;
-const closeConnection = () => __awaiter(void 0, void 0, void 0, function* () { return yield mongoose_1.default.connection.close(); });
-exports.closeConnection = closeConnection;
+exports.connectDb = connectDb;
+const closeConnectionDb = () => __awaiter(void 0, void 0, void 0, function* () {
+    const mongoClient = DbClient.getInstance();
+    const client = yield mongoClient.connect();
+    yield client.close();
+});
+exports.closeConnectionDb = closeConnectionDb;
+const getDatabase = () => {
+    const mongoClient = DbClient.getInstance();
+    return mongoClient.db(database);
+};
+exports.getDatabase = getDatabase;

@@ -1,6 +1,18 @@
-import React from "react";
+import React ,  {useEffect} from "react";
+import { useResource } from "../hooks";
 
 const Grid = () => {
+
+	const [ products, productService ] = useResource(`${process.env.BACKEND_URL}products`);
+
+	useEffect(() => {		
+		// eslint-disable-next-line @typescript-eslint/no-floating-promises
+		productService.getAll();
+	}, []);
+
+
+
+	console.log(products);
 
 	return (
 		<div className="bg-gray-100 min-h-screen py-32 px-10 ">

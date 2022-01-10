@@ -4,9 +4,12 @@ import productRouter from './routes/products';
 import testRouter from './routes/test';
 import orderRouter from './routes/orders';
 import paymentRouter from './routes/payments';
+import cors from 'cors';
 
 const app = express();
 app.use(express.json());
+// eslint-disable-next-line @typescript-eslint/no-unsafe-call
+app.use(cors());
 app.use(express.static('./src/dist'));
 
 app.use('/api/ping', router);

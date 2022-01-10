@@ -1,14 +1,16 @@
 import { ObjectId } from 'mongodb';
-import {  getDatabase, closeConnectionDb } from '../db/mongoConnection';
+import {  getDatabase, closeConnectionDb, connectDb } from '../db/mongoConnection';
 
 const getAll = async () => {	
+	await connectDb();	
 	const database =  getDatabase();
-	const products =   await database.collection("products").find({}).toArray();
+	const products =   await database.collection("products").find({}).limit(20).toArray();
 	await closeConnectionDb();
 	return products;
 };
 
 const getSingle = async (id: string)  => {
+	await connectDb();	
 	const database =  getDatabase();
 	const product =   await database.collection("products").findOne({ _id: new ObjectId(id)});
 	await closeConnectionDb();
@@ -16,6 +18,7 @@ const getSingle = async (id: string)  => {
 };
 
 const getFiltered = async (query : string) => {
+	await connectDb();	
 	const database =  getDatabase();
 	const products = database.collection("products");
 	const filteredProducts = await products.aggregate([{
