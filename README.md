@@ -1,6 +1,8 @@
-# NODE MONGO EXPRESS MOCHA  STARTER PROJECT
+# SIMPLE ECOMMERCE APP - PAINTINGS - MONGOATLAS- DEV- HACKATON
 
-This is a starter project
+demo: https://polar-wave-18778.herokuapp.com/
+
+
 
 ## ✔️ Requirements
 
@@ -12,26 +14,28 @@ Node (versions `16.X.X` are tested,  other versions _might_ not work ) and npm.
 
 2.  Create a file `.env`  and copy the contents of the `.env.template` file there. In the `.env` file, replace the value of the environment variables accordingly.
 
-4. Run `npm run tsc`  to build typescript to javascript.
+- **PRODUCTION**
 
-5. **(Optional)** To populate the database with some seed data you can run `npm run seed:run`. **Note:** running this command will remove all existing data.
+4. Run `npm run tsc:prod`  to build typescript to javascript.
 
-6. All done! Just run `npm start` to start the server. 
+5. **(Optional)** To populate the database in mongo atlas with some seed data you can run `npm run seed:production-initial`. **Note:** running this command will remove all existing data in the database name declared in .env file.
 
-## 🐛 Found a bug?
+6. Run `npm run build:prod-ui` to get the build files of the front end
 
-Submit an issue with the bug description and a way to reproduce the bug. If you have already come up with a solution, we will gladly accept a pull request.
+7. All done! Just run `npm start` to start the server. 
 
-## ❓ FAQ
 
-- **How to reset the database?** If you are absolutely sure that you want to remove _all_ the existing data, just remove the `database.sqlite` file in the `rate-repository-api` directory and run `npm run build`. You can run `npm run seed:run` to initialize the new database with seed data.
+- **DEVELOPMENT**
 
-- **How to backup the database?** Make sure you have mongo database tools installed. Next run the following script with your correct information to make a local copy of the remote database:
+8. Run `npm run tsc`  to build typescript to javascript.
 
-	mongodump --uri "mongodb+srv://<databaseuser>:<databasepassword>@cluster0.r0mb0.mongodb.net/<databasename>?retryWrites=true&w=majority"  --archive=<outputfile> --db=<databasename>
+9. **(Optional)** To populate the database in mongo atlas with some seed data you can run `npm run seed:initial`. **Note:** running this command will remove all existing data in the database name declared in .env file.
 
-To restore a backup or to upload a copy for testing use the following script:
+10.  **(Optional)**  Run `npm run build:ui` to get the build files of the front end in case only developing the backend server
 
-	mongorestore  --uri "mongodb+srv://<databaseuser>:<databasepassword>@cluster0.r0mb0.mongodb.net/<databasename>?retryWrites=true&w=majority" --archive=<localfile> --nsFrom="<localfile>.*" --nsTo='<newremotedatabase>.*'
+11. Navigate to the fronend folder and run `npm install` then  `npm update` (optional) in the directory.
+
+12.  Run `npm start` to start the front end development server. 
+
 
 
