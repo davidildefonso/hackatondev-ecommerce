@@ -33,9 +33,11 @@ Node (versions `16.X.X` are tested,  other versions _might_ not work ) and npm.
 
 10.  **(Optional)**  Run `npm run build:ui` to get the build files of the front end in case only developing the backend server
 
+12.  Run `npm run dev` to start the development server. 
+
 11. Navigate to the fronend folder and run `npm install` then  `npm update` (optional) in the directory.
 
-12.  Run `npm start` to start the front end development server. 
+12.  Run `npm start` in the frontend folder to start the front end development server. 
 
 
 

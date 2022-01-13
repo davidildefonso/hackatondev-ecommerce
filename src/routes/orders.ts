@@ -18,6 +18,7 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
 	const order = req.body;	
+
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 	const orderCreated =  await orderService.create(order);
 	res.json({ id: orderCreated.toString() });

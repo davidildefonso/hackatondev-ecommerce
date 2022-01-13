@@ -1,0 +1,40 @@
+export const   product = {
+    _id: "61da3f045c38a12b4690f472",
+	name: "Boieesen Art - Cuadro de pintura al óleo con textura pintada a mano (29.9 x 39.4 x 39.4 in), diseño abstracto moderno y rojo",
+	code: "B091HP6RY0",
+	brand: "XIN",
+	price: 39.99,
+	currency: "USD",
+	productBullets: [
+		"obra de arte",
+		"pintura al óleo",
+		"pintura abstracta",
+		"alta definición ",
+		"lienzo ecológico ",
+		"no se decolora",
+		"antiultravioleta",
+		"impermeable"
+	],
+	productDescription: "una obra de arte bien seleccionada puede ser el punto focal de tu espacio, pinturas al óleo abstractas que cuentan una historia sobre ti e inspiran conversación, motivación y creatividad. Nuestras modernas pinturas abstractas al óleo son meticulosamente curadas y creadas por varios artistas de todo el mundo, proporcionando diversas opciones para cada estilo de decoración y personalidad.",
+	category: "Oil",
+	colors: [
+		"Marrón (Brown Elephant)"
+	],
+	material: "Aceite",
+	theme: "Rustic",
+	productWeight: 1.5,
+	weightUnit: "pounds",
+	productLength: 29,
+	lengthUnit: "pulgadas",
+	ProductWidth: 2.87,
+	ProductHeight: 20.5,
+	stock: 100,
+	imageMain: "https://m.media-amazon.com/images/I/81M5RO9iTML._AC_SL1500_.jpg",
+	image1: "https://m.media-amazon.com/images/I/91VR1webwNL._AC_SL1500_.jpg",
+	image2: "https://m.media-amazon.com/images/I/91DoMq3B4QL._AC_SL1500_.jpg",
+	image3: "https://m.media-amazon.com/images/I/816+34-pMTL._AC_SL1500_.jpg",
+	imageMainMini: "https://m.media-amazon.com/images/I/51I7FLaIPuL._AC_US40_.jpg",
+	image1Mini: "https://m.media-amazon.com/images/I/41fj4Mi1oRL._AC_US40_.jpg",
+	image2Mini: "https://m.media-amazon.com/images/I/41xHGW9Z6RL._AC_US40_.jpg",
+	image3Mini: "https://m.media-amazon.com/images/I/31gKmVVP64L._AC_US40_.jpg"
+  };

@@ -1,5 +1,5 @@
 import {  ObjectId  } from 'mongodb';
-import {  getDatabase, closeConnectionDb } from '../db/mongoConnection';
+import {  getDatabase, closeConnectionDb , connectDb} from '../db/mongoConnection';
 import { Payment } from '../types';
 
 const getAll = async () => {	
@@ -18,9 +18,11 @@ const getSingle = async (id: string)  => {
 
 
 const create = async (obj : Payment) => {
+	await connectDb();	
 	const database =  getDatabase();
 	const payments = database.collection("payments");	
 	const result = await payments.insertOne(obj);
+	await closeConnectionDb();
 	return result.insertedId;
 };
 

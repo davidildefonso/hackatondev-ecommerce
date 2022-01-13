@@ -4,6 +4,7 @@ import productRouter from './routes/products';
 import testRouter from './routes/test';
 import orderRouter from './routes/orders';
 import paymentRouter from './routes/payments';
+import otherRouter from './routes/others';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
@@ -24,9 +25,11 @@ app.use('/api/ping', router);
 app.use('/api/products', productRouter);
 app.use('/api/orders', orderRouter);
 app.use('/api/payments', paymentRouter );
+
 // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 app.use('/api/test', testRouter);
 
 
+app.use('*', otherRouter);
 
 export default app;

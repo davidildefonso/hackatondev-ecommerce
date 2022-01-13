@@ -33,6 +33,9 @@ module.exports = (_env, argv) =>  {
 			path: path.resolve(__dirname, 'dist'),
 		},
 		devServer: {
+			proxy: { // proxy URLs to backend development server
+				'/': 'http://localhost:3003'
+			},
 			static: path.resolve(__dirname, 'dist'),
 			compress: true,
 			port: 4000,
