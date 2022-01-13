@@ -41,7 +41,7 @@ const App = () =>  {
 		? productsToshow.find((product: { _id: string; }) => product._id === match.params.id)
 		: null;
 
-	const props = {  productsToshow };
+	const props = {  productsToshow , setProductsToShow};
 
 
 	useEffect(() => {	

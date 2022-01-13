@@ -25,7 +25,7 @@ const getSingle = async (id: string)  => {
 	return product;
 };
 
-const getFiltered = async (query : string) => {
+const getFiltered = async (query : string | [string]) => {
 	await connectDb();	
 	const database =  getDatabase();
 	const products = database.collection("products");

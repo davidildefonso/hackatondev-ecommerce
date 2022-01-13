@@ -1,13 +1,25 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import React from "react";
+import React, {useEffect} from "react";
 import GridItem from "./GridItem";
+import { useResource } from "../hooks";
 
+const Grid = ( props: {  productsToshow : any , setProductsToShow: any} ) => {
 
-const Grid = ( props: {  productsToshow : any } ) => {
+	const [ products, productService ] = useResource(`api/products`);	
 
-	
+	const filterBrand = (brand: string) => {
+		void productService.getFiltered(brand);
+	};
+
+	useEffect(() => {
+		if(products && products.length > 0){
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+			props.setProductsToShow(products);
+		}
+	}, [products]);
+
 
 
 	if(!props.productsToshow) return null;
@@ -73,33 +85,7 @@ const Grid = ( props: {  productsToshow : any } ) => {
 							
 							
 						</div>
-						<div>
-							<p  className="font-bold mb-4 pl-2"  >PRICE</p>
-							<div>
-								<div className="flex items-start items-center mb-4">
-									<input id="checkbox-2" aria-describedby="checkbox-2" type="checkbox" className="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-4 w-4 rounded"/>
-									<label htmlFor="checkbox-2" className="text-sm ml-3 font-medium text-gray-900">0 - 100 $</label>
-								</div>
-
-								<div className="flex items-start items-center mb-4">
-									<input id="checkbox-3" aria-describedby="checkbox-3" type="checkbox" className="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-4 w-4 rounded"/>
-									<label htmlFor="checkbox-3" className="text-sm ml-3 font-medium text-gray-900">100 - 200 $</label>
-								</div>
-								<div className="flex items-start items-center mb-4">
-									<input id="checkbox-3" aria-describedby="checkbox-3" type="checkbox" className="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-4 w-4 rounded"/>
-									<label htmlFor="checkbox-3" className="text-sm ml-3 font-medium text-gray-900">200 - 300 $</label>
-								</div>
-								<div className="flex items-start items-center mb-4">
-									<input id="checkbox-3" aria-describedby="checkbox-3" type="checkbox" className="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-4 w-4 rounded"/>
-									<label htmlFor="checkbox-3" className="text-sm ml-3 font-medium text-gray-900">300 - 500 $</label>
-								</div>
-								<div className="flex items-start items-center mb-4">
-									<input id="checkbox-3" aria-describedby="checkbox-3" type="checkbox" className="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-4 w-4 rounded"/>
-									<label htmlFor="checkbox-3" className="text-sm ml-3 font-medium text-gray-900">  500  - more $  </label>
-								</div>
-							</div>
-							
-						</div>
+				
 		
         
 					

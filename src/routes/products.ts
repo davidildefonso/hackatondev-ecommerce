@@ -17,7 +17,6 @@ router.get('/:id', async (req, res) => {
 
 router.get('/skip/:skip', async (req, res) => {
 	const skip = Number(req.params.skip);	
-	console.log(skip)
 	const product = await productService.getAllSkip(skip);
 	res.json(product);
 });
