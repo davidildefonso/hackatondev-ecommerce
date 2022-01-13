@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
@@ -10,6 +11,8 @@ interface Service{
     update: (id: unknown, newObject: unknown) => Promise<void>;
     getAll: () => Promise<void>;
 	getSingle: (id: unknown) => Promise<void>;
+	getFiltered:  (str: string) => Promise<void>;
+	getAllSkip: (skip: number) => Promise<void>;
 }
 
 interface Resource{
@@ -41,8 +44,18 @@ export const useResource = (baseUrl: string)  :  [Resource[]  | any, Service, bo
 			const response = await axios.get(baseUrl);
 			setResources(response.data);
 		},
+		getAllSkip: async (skip: any) => {
+			setLoading(true);	
+			const response = await axios.get(`${ baseUrl }/skip/${skip}`);
+			setResources(response.data);
+			setLoading(false);
+		},
 		getSingle: async (id: unknown ) => {
 			const response = await axios.get(`${ baseUrl }/${id}` );
+			setResources(response.data);
+		},
+		getFiltered: async (str: string,) => {
+			const response = await axios.get(`${ baseUrl }/search/${str}`);
 			setResources(response.data);
 		} 
 	};

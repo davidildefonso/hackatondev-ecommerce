@@ -15,6 +15,13 @@ router.get('/:id', async (req, res) => {
 	res.json(product);
 });
 
+router.get('/skip/:skip', async (req, res) => {
+	const skip = Number(req.params.skip);	
+	console.log(skip)
+	const product = await productService.getAllSkip(skip);
+	res.json(product);
+});
+
 router.get('/search/:query', async (req, res) => {
 	const query = req.params.query;
 	const filteredProducts =  await productService.getFiltered(query);

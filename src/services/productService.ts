@@ -4,7 +4,15 @@ import {  getDatabase, closeConnectionDb, connectDb } from '../db/mongoConnectio
 const getAll = async () => {	
 	await connectDb();	
 	const database =  getDatabase();
-	const products =   await database.collection("products").find({}).limit(20).toArray();
+	const products =   await database.collection("products").find({}).limit(6).toArray();
+	await closeConnectionDb();
+	return products;
+};
+
+const getAllSkip = async (skipped: number) => {	
+	await connectDb();	
+	const database =  getDatabase();
+	const products =   await database.collection("products").find({}).limit(6).skip(skipped).toArray();
 	await closeConnectionDb();
 	return products;
 };
@@ -21,15 +29,27 @@ const getFiltered = async (query : string) => {
 	await connectDb();	
 	const database =  getDatabase();
 	const products = database.collection("products");
-	const filteredProducts = await products.aggregate([{
-		$search: {
-			index: 'default',
-			text: {
-				query,
-				path: "brand"
+	const limit = 6;
+	const skip = 6;
+
+	const filteredProducts = await products.aggregate([
+		{
+			$search: {
+				index: 'default',
+				text: {
+					path:["brand", "name"],
+					query,
+					fuzzy: {}
+				}				
 			}
+		},
+		{	
+			$skip : skip
+		},
+		{ 
+			$limit: limit 
 		}
-	}]).toArray();
+	]).toArray();
 	await closeConnectionDb();
 	return filteredProducts;
 };
@@ -37,7 +57,8 @@ const getFiltered = async (query : string) => {
 const service = {
 	getAll, 
 	getSingle,
-	getFiltered
+	getFiltered,
+	getAllSkip
 };
 
 export default service;
