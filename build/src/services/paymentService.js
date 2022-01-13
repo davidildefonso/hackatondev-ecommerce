@@ -24,9 +24,11 @@ const getSingle = (id) => __awaiter(void 0, void 0, void 0, function* () {
     return payment;
 });
 const create = (obj) => __awaiter(void 0, void 0, void 0, function* () {
+    yield (0, mongoConnection_1.connectDb)();
     const database = (0, mongoConnection_1.getDatabase)();
     const payments = database.collection("payments");
     const result = yield payments.insertOne(obj);
+    yield (0, mongoConnection_1.closeConnectionDb)();
     return result.insertedId;
 });
 const service = {

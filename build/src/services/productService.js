@@ -14,7 +14,14 @@ const mongoConnection_1 = require("../db/mongoConnection");
 const getAll = () => __awaiter(void 0, void 0, void 0, function* () {
     yield (0, mongoConnection_1.connectDb)();
     const database = (0, mongoConnection_1.getDatabase)();
-    const products = yield database.collection("products").find({}).limit(20).toArray();
+    const products = yield database.collection("products").find({}).limit(6).toArray();
+    yield (0, mongoConnection_1.closeConnectionDb)();
+    return products;
+});
+const getAllSkip = (skipped) => __awaiter(void 0, void 0, void 0, function* () {
+    yield (0, mongoConnection_1.connectDb)();
+    const database = (0, mongoConnection_1.getDatabase)();
+    const products = yield database.collection("products").find({}).limit(6).skip(skipped).toArray();
     yield (0, mongoConnection_1.closeConnectionDb)();
     return products;
 });
@@ -29,21 +36,33 @@ const getFiltered = (query) => __awaiter(void 0, void 0, void 0, function* () {
     yield (0, mongoConnection_1.connectDb)();
     const database = (0, mongoConnection_1.getDatabase)();
     const products = database.collection("products");
-    const filteredProducts = yield products.aggregate([{
+    const limit = 6;
+    const skip = 6;
+    const filteredProducts = yield products.aggregate([
+        {
             $search: {
                 index: 'default',
                 text: {
+                    path: ["brand", "name"],
                     query,
-                    path: "brand"
+                    fuzzy: {}
                 }
             }
-        }]).toArray();
+        },
+        {
+            $skip: skip
+        },
+        {
+            $limit: limit
+        }
+    ]).toArray();
     yield (0, mongoConnection_1.closeConnectionDb)();
     return filteredProducts;
 });
 const service = {
     getAll,
     getSingle,
-    getFiltered
+    getFiltered,
+    getAllSkip
 };
 exports.default = service;

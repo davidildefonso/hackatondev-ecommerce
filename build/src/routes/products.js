@@ -25,6 +25,11 @@ router.get('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     const product = yield productService_1.default.getSingle(id);
     res.json(product);
 }));
+router.get('/skip/:skip', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const skip = Number(req.params.skip);
+    const product = yield productService_1.default.getAllSkip(skip);
+    res.json(product);
+}));
 router.get('/search/:query', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const query = req.params.query;
     const filteredProducts = yield productService_1.default.getFiltered(query);

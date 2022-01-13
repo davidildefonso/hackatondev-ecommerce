@@ -17,15 +17,12 @@ const express_1 = __importDefault(require("express"));
 const testService_1 = __importDefault(require("../services/testService"));
 const router = express_1.default.Router();
 router.get('/search', (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("gola");
     const films = yield testService_1.default.getFiltered();
-    console.log(films.length);
     res.json(films);
 }));
 router.get('/search/:query', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const query = req.params.query;
     const films = yield testService_1.default.filteredFilms(query);
-    console.log(films.length);
     res.json(films);
 }));
 exports.default = router;

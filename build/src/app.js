@@ -9,6 +9,7 @@ const products_1 = __importDefault(require("./routes/products"));
 const test_1 = __importDefault(require("./routes/test"));
 const orders_1 = __importDefault(require("./routes/orders"));
 const payments_1 = __importDefault(require("./routes/payments"));
+const others_1 = __importDefault(require("./routes/others"));
 const cors_1 = __importDefault(require("cors"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
@@ -26,4 +27,5 @@ app.use('/api/orders', orders_1.default);
 app.use('/api/payments', payments_1.default);
 // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 app.use('/api/test', test_1.default);
+app.use('*', others_1.default);
 exports.default = app;
